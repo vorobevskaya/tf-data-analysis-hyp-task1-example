@@ -13,7 +13,7 @@ def solution(x_success: int,
     # Не меняйте название функции и её аргументы
     p_cnt = x_success / x_cnt
     p_test = y_success / y_cnt
-    if p_cnt -  p_test > 0.06:
+    if p_cnt -  p_test >= 0.06:
       result = bool(0) 
     else:
       result = bool(1)
