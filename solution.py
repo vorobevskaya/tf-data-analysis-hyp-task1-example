@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-
+from statsmodels.stats.proportion import proportions_ztest
 
 chat_id = 689606612 # Ваш chat ID, не меняйте название переменной
 
@@ -11,10 +11,13 @@ def solution(x_success: int,
     # Измените код этой функции
     # Это будет вашим решением
     # Не меняйте название функции и её аргументы
-    p_cnt = x_success / x_cnt
-    p_test = y_success / y_cnt
-    if p_cnt -  p_test >= 0.06:
-      result = bool(0) 
-    else:
+    alpha = 0.06
+    n = [x_cnt, y_cnt]
+    successes = [x_success, y_success]
+
+    stat, p_value = proportions_ztest(successes, nobs = n, alternative='larger')
+    if 1 - p_value <= alpha:
       result = bool(1)
+    else:
+      result = bool(0)
     return result # Ваш ответ, True или False
